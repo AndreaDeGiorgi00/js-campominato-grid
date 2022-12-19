@@ -3,7 +3,7 @@ body{
 }
 
 header{
-    height: 100px;
+    height: 75px;
     background-color: white;
     padding: 0 20px;
 }
@@ -18,7 +18,7 @@ button{
     height: 500px;
     margin: 50px auto;
     background-color: yellow;
-    ;
+    
 
 }
 

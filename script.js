@@ -12,20 +12,23 @@ numero della cella cliccata.*/
 const btn = document.getElementById("button")
 const grid = document.getElementById("grid")
 let validatore = true;
+const modalità = document.getElementById("selected")
 //quando clicco il bottone vengono generate le caselle
 
 btn.addEventListener("click" , function(){
 
     //devo bloccare nel caso sia già presente una griglia
-    if(validatore){
-        addCells(100);
-        validatore = false;
-    }else{
-        //devo svuotare la grid già esistente
-        removeCells(100);
-        validatore = true;
-        
-    }
+    grid.innerHTML = "";
+    let n = 100; 
+    if (modalità.value == "medium"){
+        n = 81; 
+    }else if(modalità.value == "hard"){
+        n = 49;
+    };
+    
+    addCells(n);
+
+    
 
     //eseguo cento volte la creazione di una singola cella
 
@@ -33,12 +36,21 @@ btn.addEventListener("click" , function(){
 });
 
 
-//creo due funzioni una per aggiungere le celle
+//creo una funzione una per aggiungere le celle
 function addCells (n){
+    let difficoltà = "cell"
+
+    //creo la variabile per stabilire il livello di difficoltà
+    if (n == 81){
+        difficoltà = "cellMedium"
+    }else if(n == 49){
+        difficoltà = "cellHard"
+    }
     for(let i=1 ; i<=n ; i++){
         //creo la cella
+        //
         let cella = document.createElement("div");
-        cella.classList.add("cell");
+        cella.classList.add(difficoltà);
         //le metto dentro il numero
         cella.append(i)
         //la inserisco nella grglia
@@ -50,12 +62,7 @@ function addCells (n){
         
     }
 }
-//e una per toglierle
 
-function removeCells (n){
-    for (let i=0 ; i <= n ; i++){
-        grid.removeChild(grid.firstChild);
-    }
-}
+
 
 
